@@ -22,10 +22,6 @@ docker build -t myjob .
 docker run -e URL="https://stackoverflow.com" myjob
 ```
 
-
-
-![alt text](image.png)
-
 ## Prepare it first for GitHub Actions
 
 Before you will be able to run GitHub Actions to deploy Container Apps, you need to have the following:
