@@ -52,7 +52,7 @@ if [ "$job_query" == "[]" ]; then
       --registry-password $REGISTRY_PASSWORD \
       --cpu "0.25" \
       --memory "0.5Gi" \
-      --cron-expression "*/1 * * * *"
+      --cron-expression "$JOB_CRON_EXPRESSION"
 else
     echo "Container app job $JOB_NAME-job already exists."
 fi

@@ -12,6 +12,7 @@ env:
   RESOURCE_GROUP: ${{ vars.RESOURCE_GROUP }}
   JOB_NAME: ${{ vars.JOB_NAME }}
   JOB_IMAGE_NAME: ${{ vars.JOB_IMAGE_NAME }}
+  JOB_CRON_EXPRESSION: ${{ vars.JOB_CRON_EXPRESSION }}
 
 jobs:
   build:
