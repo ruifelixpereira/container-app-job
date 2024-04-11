@@ -70,8 +70,8 @@ And create the following variables:
 - *RESOURCE_GROUP*: the resource group name where the container app will be deployed (e.g., aca-rg-02)
 - *LOCATION*: the Azure region where the resources will be deployed (e.g., westeurope)
 - *CONTAINER_REGISTRY_NAME*: the name of the Azure Container registry to be created/used to store container images (.e.g., rfpacr02)
-- *CONTAINER_APP_NAME*: the name of the container app to be deployed (e.g., aca-gh-actions-02)
-- *TARGET_PORT*: the port where the container app will be listening (e.g., 8080)
+- *JOB_NAME*: the name of the container app job to be deployed (e.g., aca-gh-actions-02)
+- *JOB_IMAGE_NAME*: the name of the container image to build and push (e.g., triggerjob)
 
 Example:
 
@@ -79,6 +79,5 @@ Example:
 
 **Commit and push everything...***
 
-Finally, commit and push everything to the new repository. Push will trigger 2 actions:
-- `build-and-push.yaml` that will build and push the container image to `ghcr.io`
-- `build-and-deploy.yaml` that will deploy a new container App to Azure
+Finally, commit and push everything to the new repository. Push will trigger 1 action:
+- `build-and-deploy.yaml` that will deploy a new Container App Job to Azure
