@@ -44,6 +44,7 @@ if [ "$job_query" == "[]" ]; then
       --trigger-type "Schedule" \
       --replica-timeout 1800 \
       --replica-retry-limit 3 \
+      --replica-completion-count 1 \
       --parallelism 1 \
       --image $imageName \
       --registry-server $CONTAINER_REGISTRY_NAME.azurecr.io \
