@@ -6,11 +6,10 @@ Help()
    # Display Help
    echo "Deploy Azure Container App Job."
    echo
-   echo "Syntax: ./action-pre-build.sh [-h|i|t]"
+   echo "Syntax: ./action-pre-build.sh [-h|i]"
    echo "options:"
    echo "h     Print this Help."
    echo "i     Container image name."
-   echo "t     Container image tag."
    echo
 }
 
@@ -22,8 +21,6 @@ while getopts "hi:t:" option; do
          exit;;
       i) # Enter the container image name
          imageName=$OPTARG;;
-      t) # Enter the container image tag
-         imageTag=$OPTARG;;
      \?) # Invalid option
          Help
          exit;;
@@ -36,15 +33,10 @@ if [ ! "$imageName" ]; then
   Help; exit 1
 fi
 
-if [ ! "$imageTag" ]; then
-  echo "arguments -t with container image tag must be provided"
-  Help; exit 1
-fi
-
 #
 # Create/Get a container app job
 #
-job_query=$(az containerapp job --query "[?name=='$JOB_NAME-job']")
+job_query=$(az containerapp job list --query "[?name=='$JOB_NAME-job']")
 if [ "$job_query" == "[]" ]; then
     echo -e "\nCreating container app job '$JOB_NAME-job'"
     az containerapp job create --name "$JOB_NAME-job" --resource-group "$RESOURCE_GROUP" \
@@ -52,7 +44,7 @@ if [ "$job_query" == "[]" ]; then
       --trigger-type "Schedule" \
       --replica-timeout 1800 \
       --replica-retry-limit 3 \
-      --image $CONTAINER_REGISTRY_NAME.azurecr.io/$imageName:$imageTag \
+      --image $imageName \
       --registry-server $CONTAINER_REGISTRY_NAME.azurecr.io \
       --registry-username $REGISTRY_USERNAME \
       --registry-password $REGISTRY_PASSWORD \
