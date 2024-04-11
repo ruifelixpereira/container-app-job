@@ -14,7 +14,7 @@ Help()
 }
 
 # Check input options
-while getopts "hi:t:" option; do
+while getopts "hi:" option; do
    case $option in
       h) # display Help
          Help
@@ -36,8 +36,8 @@ fi
 #
 # Create/Get a container app job
 #
-job_query=$(az containerapp job list --query "[?name=='$JOB_NAME-job']")
-if [ "$job_query" == "[]" ]; then
+#job_query=$(az containerapp job list --query "[?name=='$JOB_NAME-job']")
+#if [ "$job_query" == "[]" ]; then
     echo -e "\nCreating container app job '$JOB_NAME-job'"
     az containerapp job create --name "$JOB_NAME-job" --resource-group "$RESOURCE_GROUP" \
       --environment "$JOB_NAME-env" \
@@ -46,14 +46,13 @@ if [ "$job_query" == "[]" ]; then
       --replica-retry-limit 3 \
       --replica-completion-count 1 \
       --parallelism 1 \
-      --image $imageName \
+      --image "$imageName" \
       --registry-server $CONTAINER_REGISTRY_NAME.azurecr.io \
       --registry-username $REGISTRY_USERNAME \
       --registry-password $REGISTRY_PASSWORD \
       --cpu "0.25" \
       --memory "0.5Gi" \
       --cron-expression "$JOB_CRON_EXPRESSION"
-else
-    echo "Container app job $JOB_NAME-job already exists."
-fi
-
+#else
+#    echo "Container app job $JOB_NAME-job already exists."
+#fi

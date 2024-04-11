@@ -68,6 +68,7 @@ And create the following variables:
 - *CONTAINER_REGISTRY_NAME*: the name of the Azure Container registry to be created/used to store container images (.e.g., rfpacr02)
 - *JOB_NAME*: the name of the container app job to be deployed (e.g., aca-gh-actions-02)
 - *JOB_IMAGE_NAME*: the name of the container image to build and push (e.g., triggerjob)
+- *JOB_CRON_EXPRESSION*: the cron expression for the schedule trigger (e.g., * */10 * * *)
 
 Example:
 
