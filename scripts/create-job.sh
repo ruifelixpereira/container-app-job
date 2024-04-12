@@ -46,7 +46,7 @@ fi
       --replica-retry-limit 3 \
       --replica-completion-count 1 \
       --parallelism 1 \
-      --image "$imageName" \
+      --image "$CONTAINER_REGISTRY_NAME.azurecr.io/$imageName:main" \
       --registry-server $CONTAINER_REGISTRY_NAME.azurecr.io \
       --registry-username $REGISTRY_USERNAME \
       --registry-password $REGISTRY_PASSWORD \
